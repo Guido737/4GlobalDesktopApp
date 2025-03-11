@@ -150,6 +150,26 @@ def process_command(command):
     except Exception as e:
         print(f"An error occurred: {e}")
 
+
+def recognize_speech():
+    """Function: recognize_speech
+    Brief: Recognizes speech and processes the command"""
+    recognizer = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Speak now...")
+        try:
+            recognizer.adjust_for_ambient_noise(source)
+            audio = recognizer.listen(source, timeout=5)
+            command = recognizer.recognize_google(audio, language="en-US")
+            print(f"You said: {command}")
+            process_command(command.lower())
+        except sr.UnknownValueError:
+            print("Could not understand the speech")
+        except sr.RequestError:
+            print("Error connecting to Google Speech Recognition service")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
 def on_button_click():
     """Function: on_button_click
     Brief: Handles button click event to execute the command
@@ -183,6 +203,8 @@ def main():
     command_menu.place(x=150, y=50)
     button = tk.Button(root, text="Execute", command=on_button_click, bg="lightblue")
     button.place(x=200, y=120)
+    voice_button = tk.Button(root, text="Voice Input", command=recognize_speech, bg="lightgreen")
+    voice_button.place(x=200, y=160)
     root.mainloop()
 
 
