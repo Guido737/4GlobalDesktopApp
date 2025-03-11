@@ -153,7 +153,7 @@ def get_data():
 
 def create_main_window():
     root = tk.Tk()
-    root.title("Пример с наложением фона")
+    root.title("Crypto")
     root.geometry("800x600")
     canvas = tk.Canvas(root, width=3400, height=1400)
     canvas.pack()
