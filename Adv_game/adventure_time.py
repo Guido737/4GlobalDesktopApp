@@ -25,10 +25,10 @@ BLUE = (0, 0, 255)
 """
 def load_image(image_path):
     if isinstance(image_path, str) and os.path.exists(image_path):
-        print(f"Загружаем изображение: {image_path}")
+        print(f"Loading Image: {image_path}")
         return pygame.image.load(image_path)
     else:
-        print(f"Ошибка: файл по пути {image_path} не найден.")
+        print(f"Error: file in path {image_path} not found.")
         return None
 
 """Function: play_background_music
